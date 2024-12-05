@@ -1,12 +1,25 @@
+# For ubuntu, do not run on MAC - makes all the paths in here automatically go to Repo folder
+setwd("/home/ubuntu/git/OLA5Opgave2")
+
+#for (entry in stations) {
+#  Sys.sleep(1)
+#  print(entry)
+#  for (station in entry$station) {
+#    Sys.sleep(1)
+#    print(station)
+#  }
+#}
+
 library(httr)
 library(rvest)
+stations <- list(
+  list(area = "Copenhagen", station = "HCAB"),
+  list(area = "Aarhus", station = "AARH3"),
+  list(area = "Rural", station = c("ANHO", "RISOE")))
 
 args = commandArgs(trailingOnly = TRUE)
 operator_area <- args[1]
 operator <- args[2]
-
-operator_area <- "Rural"
-operator <- "ANHO"
 
 df=NULL
 UserA <- "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
@@ -57,12 +70,10 @@ con <- dbConnect(MariaDB(),
                  port = 3306,
                  user = "testuser",
                  password = password)
-dbWriteTable(con,"ANHO",currentscrape)
 
-uniquename <- "yessir"
-dbWriteTable(con,uniquename,ANHO)
+#dbWriteTable(con,operator,currentscrape)
 
-
-rds <- paste0(HCAB,".rds")
-saveRDS(rds,"4Dec")
+print(nrow(currentscrape))
+#rds <- paste0(HCAB,".rds")
+#saveRDS(rds,"4Dec")
 
