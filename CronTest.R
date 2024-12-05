@@ -1,3 +1,4 @@
+setwd("/home/ubuntu/git/OLA5Opgave2")
 sysTime <- as.data.frame(Sys.time())
 library(RMariaDB)
 
@@ -11,4 +12,6 @@ con <- dbConnect(MariaDB(),
                  user = "testuser",
                  password = password)
 
-dbWriteTable(con,"crontabTest",sysTime)
+dbWriteTable(con,"crontabTest",sysTime, append = TRUE)
+
+dbDisconnect(con)
