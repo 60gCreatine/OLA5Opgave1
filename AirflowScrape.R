@@ -65,15 +65,39 @@ readRenviron(".Renviron")
 password <- Sys.getenv("password")
 
 con <- dbConnect(MariaDB(),
-                 dbname = "airflow",
+                 dbname = "AirflowData",
                  host = "16.170.239.179",
                  port = 3306,
                  user = "testuser",
                  password = password)
 
-#dbWriteTable(con,operator,currentscrape)
+# Konverter "Målt (starttid)" til POSIXct. Tilpas format hvis nødvendigt.
+# '%d-%m-%Y %H:%M' betyder: dag-måned-år time:minut
+currentscrape$`Målt (starttid)` <- as.POSIXct(
+  currentscrape$`Målt (starttid)`,
+  format = "%d-%m-%Y %H:%M",
+  tz = "Europe/Copenhagen"
+)
 
-print(nrow(currentscrape))
+# Hent den seneste dato/tid i databasen for den pågældende station
+max_query <- paste0("SELECT MAX(`Målt (starttid)`) AS max_date FROM `", operator, "`")
+max_date_db <- dbGetQuery(con, max_query)$max_date
+
+# Hvis max_date_db ikke er NA, konverteres den til POSIXct for sammenligning
+if (!is.na(max_date_db)) {
+  max_date_db <- as.POSIXct(max_date_db, tz = "Europe/Copenhagen", format = "%Y-%m-%d %H:%M:%S")
+  
+  # Filtrer currentscrape, så vi kun beholder rækker, hvor "Målt (starttid)" er nyere end max_date_db
+  currentscrape <- currentscrape[currentscrape$`Målt (starttid)` > max_date_db, ]
+}
+
+#Indææter kun de nye rækker, hvor datoen er højere end 0
+if (nrow(currentscrape) > 0) {
+  dbWriteTable(con, operator, currentscrape, append = TRUE)
+}
+
+dbDisconnect(con)
+
 #rds <- paste0(HCAB,".rds")
 #saveRDS(rds,"4Dec")
 
