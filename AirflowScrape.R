@@ -56,7 +56,9 @@ colnames(df) <- header
 df[,2:header_amount] <- lapply(df[,2:header_amount], function(x) as.numeric(gsub(",",".",x)))
 idk <- paste0(operator, " havde: ", nrow(df), " rows\n")
 
+
 currentscrape <- assign(operator, df)
+
 
 
 library(RMariaDB)
