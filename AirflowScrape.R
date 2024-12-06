@@ -13,7 +13,9 @@ if (!dir.exists(log_dir)) {
 log_message <- function(message) {
   timestamp <- format(Sys.time(), "%Y-%m-%d %H:%M")
   log_entry <- paste0("[",timestamp,"]", message)
-  writeLines(log_entry,con = log_file, append = T, sep = "\n")
+  con <- file(log_file, open = "a") 
+  writeLines(log_entry,con = con, sep = "\n")
+  close(con)
 }
 
 
@@ -27,6 +29,9 @@ stations <- list(
 args = commandArgs(trailingOnly = TRUE)
 operator_area <- args[1]
 operator <- args[2]
+
+operator="HCAB"
+operator_area="Copenhagen"
 
 log_message(paste0("Scraper: ",operator))
 
@@ -111,7 +116,7 @@ log_message(paste0("Antal nye rækker tilføjet i SQL for ",operator,": ",nrow(c
 
 #Indææter kun de nye rækker, hvor datoen er højere end 0
 if (nrow(currentscrape) > 0) {
-  dbWriteTable(con, operator, currentscrape, append = TRUE)
+  dbWriteTable(con, operator, currentscrape, append = T)
 } else {
   log_message(paste0("INGEN NYE RÆKKER TILFØJET!"))
 }
@@ -121,6 +126,6 @@ dbDisconnect(con)
   log_message(paste0("Fejl: ","'",error$message,"'", " opstået for: ",operator))
 })
 
-log_message("Cronjob gennemført")
+log_message("Cronjob gennemført\n")
 
 
