@@ -358,3 +358,23 @@
 [2024-12-22 00:00]Antal nye rækker tilføjet i SQL for RISOE: 24
 [2024-12-22 00:00]Cronjob gennemført
 
+[2024-12-30 21:52]Scraper: HCAB
+[2024-12-30 21:52]Totalt antal scrapede rækker: 719
+[2024-12-30 21:52]Fejl: 'Failed to connect: Can't connect to server on '16.170.239.179' (110)' opstået for: HCAB
+[2024-12-30 21:52]Cronjob gennemført
+
+[2024-12-30 21:52]Scraper: AARH3
+[2024-12-30 21:52]Totalt antal scrapede rækker: 719
+[2024-12-30 21:52]Fejl: 'Failed to connect: Can't connect to server on '16.170.239.179' (110)' opstået for: AARH3
+[2024-12-30 21:52]Cronjob gennemført
+
+[2024-12-30 21:52]Scraper: ANHO
+[2024-12-30 21:52]Totalt antal scrapede rækker: 715
+[2024-12-30 21:52]Fejl: 'Failed to connect: Can't connect to server on '16.170.239.179' (110)' opstået for: ANHO
+[2024-12-30 21:52]Cronjob gennemført
+
+[2024-12-30 21:52]Scraper: RISOE
+[2024-12-30 21:52]Totalt antal scrapede rækker: 719
+[2024-12-30 21:52]Fejl: 'Failed to connect: Can't connect to server on '16.170.239.179' (110)' opstået for: RISOE
+[2024-12-30 21:52]Cronjob gennemført
+
