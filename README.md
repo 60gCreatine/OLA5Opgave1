@@ -27,6 +27,7 @@ Systemet følger en struktureret proces:
 - En **Ubuntu EC2-instans** oprettes på AWS.
 - Swap-konfiguration sikrer stabil installation af R-pakker.
 - **MySQL** opsættes til at gemme data eksternt.
+
 ![MySQL Database](Images/Database.png)
 
 ### 2. R-script til Webscraping
