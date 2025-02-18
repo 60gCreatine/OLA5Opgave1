@@ -27,6 +27,7 @@ Systemet følger en struktureret proces:
 - En **Ubuntu EC2-instans** oprettes på AWS.
 - Swap-konfiguration sikrer stabil installation af R-pakker.
 - **MySQL** opsættes til at gemme data eksternt.
+![MySQL Database](Images/Database.png)
 
 ### 2. R-script til Webscraping
 - Data webscrapes via **GET- og POST-requests** fra Aarhus Universitets målesystem.
@@ -42,6 +43,7 @@ Systemet følger en struktureret proces:
 ### 4. Logging og Fejlbehandling
 - **Fejl håndteres med `tryCatch()`** i R, og logfiler opdateres automatisk.
 - **Logs gemmes i GitHub** via automatiseret push.
+![Logs oversigt](Images/Logs_example.png)
 
 ## Resultat
 Systemet sikrer en **effektiv, sikker og skalerbar** løsning til dataindsamling.  
