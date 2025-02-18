@@ -6,7 +6,7 @@ Løsningen kører på **AWS Ubuntu EC2**, henter data via **R-scripts** og gemme
 
 ## Arkitektur
 Systemet følger en struktureret proces:
-![Arkitektur oversigt](Images/Overview)
+![Arkitektur oversigt](Images/Overview.png)
 
 1. **Dataindsamling** – Webscraping med R for at hente målinger fra Aarhus Universitets målestationer.
 2. **Databehandling** – Data struktureres, valideres og filtreres for at sikre kvalitet.
